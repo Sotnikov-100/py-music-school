@@ -1,5 +1,8 @@
 from django.urls import path
-from musician.views import MusicianListCreateView, MusicianRetrieveUpdateDestroyView
+from musician.views import (
+    MusicianListCreateView,
+    MusicianRetrieveUpdateDestroyView,
+)
 
 
 app_name = "musician"
