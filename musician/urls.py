@@ -1,10 +1,16 @@
-from rest_framework.routers import DefaultRouter
-from musician.views import MusicianViewSet
+from django.urls import path
+from musician.views import MusicianListCreateView, MusicianRetrieveUpdateDestroyView
 
-
-router = DefaultRouter()
-router.register(r"musicians", MusicianViewSet, basename="musician")
-
-urlpatterns = router.urls
 
 app_name = "musician"
+
+urlpatterns = [
+    path(
+        "manage/",
+        MusicianListCreateView.as_view(),
+        name="manage-list"),
+    path(
+        "manage/<int:pk>/",
+        MusicianRetrieveUpdateDestroyView.as_view(),
+        name="manage-detail"),
+]

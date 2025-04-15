@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from musician.models import Musician
 
-
 class MusicianSerializer(serializers.ModelSerializer):
     is_adult = serializers.SerializerMethodField()
 
@@ -19,3 +18,8 @@ class MusicianSerializer(serializers.ModelSerializer):
 
     def get_is_adult(self, obj):
         return obj.is_adult
+
+    def validate_age(self, value):
+        if value < 14:
+            raise serializers.ValidationError("Musician must be at least 14 years old.")
+        return value
